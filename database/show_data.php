@@ -9,6 +9,7 @@ mysqli_close($con);
 <html>
 
  <head>
+ <?php include('header_files.php');?>
   <title></title>
  </head>
 
@@ -17,7 +18,7 @@ mysqli_close($con);
 	<h1>ASW</h1>
    </header>
   
-  <table>
+  <table class="stripped centered highlight responsive-table bordered">
         <thead>
           <tr>
               <th>Book Id</th>
@@ -38,7 +39,7 @@ mysqli_close($con);
 				$row=mysqli_fetch_array($result);
 			?>	
 				<tr>
-					<td><?php echo $row['id']; ?></td>
+					<td><?php echo $row['bookid']; ?></td>
                     <td><?php echo $row['name'];?> </td>
                     <td><?php echo $row['price']; ?></td>
                     <td><?php echo $row['author']; ?></td>
