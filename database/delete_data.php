@@ -64,13 +64,13 @@ $num=mysqli_num_rows($result);
                               <td><?php echo $row['discount']; ?></td>
                           <td>
                 <input type="checkbox" id="test <?php echo $i; ?>" value="<?php echo $row['bookid']; ?>" name="b<?php echo $i; ?>"/>
-                <label for="test <?php echo $i; ?>">ID</label>
+                <label for="test <?php echo $i; ?>">Delete</label>
                 </td>
                           </tr>
                           
-                      <?php
-                      }
-                      ?>
+                    <?php
+                    }
+                    ?>
                   </tbody>
                 </table>
                 <div class="row">
