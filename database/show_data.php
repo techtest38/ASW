@@ -15,8 +15,21 @@ mysqli_close($con);
 
  <body>
   <header>
-	<h1>ASW</h1>
-   </header>
+  <div class="navbar-fixed">
+    <nav>
+      <div class="nav-wrapper">
+        <a href="#!" class="brand-logo center">ASW</a>
+        <ul class="left hide-on-med-and-down">
+          <li><a href="../index.php">HOME</a></li>
+          <li><a href="show_data.php">SHOW</a></li>
+          <li><a href="insert_data.php">INSERT</a></li>
+          <li><a href="delete_data.php">DELETE</a></li>
+          <li><a href="update_data.php">UPDATE</a></li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+  </header>
   
   <table class="stripped centered highlight responsive-table bordered">
         <thead>

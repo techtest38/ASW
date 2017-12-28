@@ -1,28 +1,3 @@
- <?php
- if(isset($_POST['update_btn']))
- {
- include('db_connect.php');
-
-$name=$_POST['name'];
-$price=$_POST['price'];
-$author= $_POST['author'];
-$field=$_POST['field'];
-$subject= $_POST['subject'];
-$speciality= $_POST['speciality'];
-$discount= $_POST['discount'];
-$bid = $_POST['bid'];
-//echo  $name  ;echo  $price  ;echo  $author  ;echo  $field  ;echo  $subject  ;echo  $speciality  ;echo  $discount  ;
-$p = "update book SET name='$name',price=$price,author='$author',field='$field',
-     subject='$subject',speciality='$speciality',
-    discount=$discount
-
-    where bookid=$bid";
-
-mysqli_query($con,$p);
-
-mysqli_close($con);
- }
-?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -33,29 +8,16 @@ mysqli_close($con);
         <link href="css/style.css" rel="stylesheet">
     </head>
     <body>
-    <header>
-    <div class="navbar-fixed">
-      <nav>
-        <div class="nav-wrapper">
-          <a href="#!" class="brand-logo center">ASW</a>
-          <ul class="left hide-on-med-and-down">
-            <li><a href="../index.php">HOME</a></li>
-            <li><a href="show_data.php">SHOW</a></li>
-            <li><a href="insert_data.php">INSERT</a></li>
-            <li><a href="delete_data.php">DELETE</a></li>
-            <li><a href="update_data.php">UPDATE</a></li>
-          </ul>
+        <div class="row">
+            <center><h2>Update Books</h2></center>
         </div>
-      </nav>
-    </div>
-    </header>
         <div class="row">
         <form class="col s12" method="post" action="update_data.php">
             <div>
                 <div class="input-field col s6">
                 <i class="material-icons prefix">add</i>
                 <input id="b_to_del" type="number" class="validate" name="b_to_del">
-                <label for="b_to_del">Book ID to Update</label>
+                <label for="b_to_del">Book ID to delete</label>
                 </div>
             </div>
             <div class="row">
@@ -70,8 +32,6 @@ mysqli_close($con);
         </div>
 
         <?php
-        if(isset($_POST['num_btn']))
-        {
         include('db_connect.php');
         $b_id = 0;
         if(isset($_POST['num_btn'])){
@@ -102,7 +62,7 @@ mysqli_close($con);
 
                     <tbody>
                     <tr>
-                        <td><input  type="number" value="<?php echo $row['bookid'];?>" name="bid" /></td>
+                        <td><input  type="number" value="<?php echo $row['bookid'];?>" name="bookid" /></td>
                         <td><input type="text" value="<?php echo $row['name'];?>" name="name" /></td>
                         <td><input type="number" value="<?php echo $row['price'];?>" name="price" /></td>
                         <td><input type="text" value="<?php echo $row['author'];?>" name="author" /></td>
@@ -125,4 +85,35 @@ mysqli_close($con);
         </div>
     </body>
 </html>
-        <?php } ?>
+
+<?php
+if(isset($_POST['update_btn'])){
+    $name="name";
+    $price="price";
+    $author="author";
+    $field="field";
+    $subject="subject";
+    $speciality="speciality";
+    $discount="discount";
+
+    $p = "update book
+        SET
+        
+        name='$_POST[$name]',
+        
+        price=$_POST[$price],
+        author='$_POST[$author]',
+        field='$_POST[$field]',
+        subject='$_POST[$subject]',
+        speciality='$_POST[$speciality]',
+        discount=$_POST[$discount],
+
+        where bookid=".$_POST['bookid'];
+
+
+    mysqli_query($con,$p);
+
+    mysqli_close($con);
+}
+
+?>

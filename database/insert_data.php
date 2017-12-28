@@ -1,99 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <?php include('header_files.php');?>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="css/style.css" rel="stylesheet">
+    </head>
+    <body>
+    <header>
+    <div class="navbar-fixed">
+      <nav>
+        <div class="nav-wrapper">
+          <a href="#!" class="brand-logo center">ASW</a>
+          <ul class="left hide-on-med-and-down">
+            <li><a href="../index.php">HOME</a></li>
+            <li><a href="show_data.php">SHOW</a></li>
+            <li><a href="insert_data.php">INSERT</a></li>
+            <li><a href="delete_data.php">DELETE</a></li>
+            <li><a href="update_data.php">UPDATE</a></li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+    </header>
+        <div class="row">
+        <form class="col s12" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+            <div>
+                <div class="input-field col s6">
+                <i class="material-icons prefix">add</i>
+                <input id="numob" type="number" class="validate" name="numob">
+                <label for="numob">No. of Books to Add</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s3"></div>
+                <div class="input-field col s6">
+                <button class="btn waves-effect waves-light" type="submit" name="num_btn">Submit
+                    <i class="material-icons right">send</i>
+                </button>
+                </div>
+            </div>
+        </form>
+        </div>
+        <div class="row">
+            <form class="cols s12" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+                <table class="stripped centered highlight responsive-table bordered">
+                    <thead>
+                    <tr>
+                        <th>S. No.</th>
+                        <th>Name</th>
+                        <th>Price</th>
+                        <th>Author</th>
+                        <th>Field</th>
+                        <th>Subject</th>
+                        <th>Speciality</th>
+                        <th>Discount</th>
+                    </tr>
+                    </thead>
 
-<!Doctype html>
-<html>
-
- <head>
-  <?php include('header_files.php');?>
-  <title></title>
- </head>
-
- <body>
-  <header>
-	<center><h1>ASW</h1></center>
-  </header>
-  
-  <div class="row">
-    <form class="col s12">
-      <div class="row">
-        <div class="col s3"></div>
-        <div class="input-field col s6">
-          <i class="material-icons prefix">book</i>
-          <input id="name" type="text" class="validate">
-          <label for="name">Name</label>
+                    <tbody>
+                    <?php
+                        $n = 0;
+                        if(isset($_POST['num_btn'])){
+                            $n = $_POST['numob'];
+                        }
+                        //echo "$n";
+                        for($i=1; $i<=$n; $i++){
+                    ?>
+                    <tr>
+                        <td><?php echo $i; ?></td>
+                        <td><input type="text" name="name<?php echo $i; ?>" /></td>
+                        <td><input type="number" name="price<?php echo $i; ?>" /></td>
+                        <td><input type="text" name="author<?php echo $i; ?>" /></td>
+                        <td><input type="text" name="field<?php echo $i; ?>" /></td>
+                        <td><input type="text" name="subject<?php echo $i; ?>" /></td>
+                        <td><input type="text" name="speciality<?php echo $i; ?>" /></td>
+                        <td><input type="number" name="discount<?php echo $i; ?>" /></td>
+                    </tr>
+                    <?php
+                        }
+                    ?>
+                    </tbody>
+                </table>
+                <span><input type="hidden" value="<?php echo $_POST['numob']; ?>"; name="num"></span>
+                <div class="row">
+                <div class="input-field col s6">
+                <button class="btn waves-effect waves-light" type="submit" name="input_btn" >INSERT
+                    <i class="material-icons right">send</i>    
+                </button>
+                </div>
+                </div>
+            </form>
         </div>
-      </div>
-      <div class="row">
-        <div class="col s3"></div>
-        <div class="input-field col s6">
-          <i class="material-icons prefix">monetization_on</i>
-          <input id="price" type="number" class="validate">
-          <label for="price">Price</label>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col s3"></div>
-        <div class="input-field col s6">
-          <i class="material-icons prefix">account_circle</i>
-          <input id="author" type="text" class="validate">
-          <label for="author">Author</label>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col s3"></div>
-        <div class="input-field col s6">
-          <i class="material-icons prefix">school</i>
-          <input id="field" type="text" class="validate">
-          <label for="field">Field</label>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col s3"></div>
-        <div class="input-field col s6">
-          <i class="material-icons prefix">layers</i>
-          <input id="subject" type="text" class="validate">
-          <label for="subject">Subject</label>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col s3"></div>
-        <div class="input-field col s6">
-          <i class="material-icons prefix">insert_comment</i>
-          <input id="speciality" type="text" class="validate">
-          <label for="speciality">Speciality</label>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col s3"></div>
-        <div class="input-field col s6">
-          <i class="material-icons prefix">local_offer</i>
-          <input id="discount" type="number" class="validate">
-          <label for="discount">Discount</label>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col s3"></div>
-        <div class="input-field col s6">
-          <button class="btn waves-effect waves-light" type="submit" name="action">Submit
-            <i class="material-icons right">send</i>
-          </button>
-        </div>
-      </div>
-    </form>
-  </div>
-    </form>
-  </div>
- </body>
+    </body>
 </html>
 
 
 <?php
-$title=$_POST['title'];
-$price=$_POST['price'];
-$author=$_POST['author'];
+ include('db_connect.php');
 
+$num=$_POST['num'];
 
+$cnt=0;
+for($i=1; $i<=$num; $i++){
+    $iname="name".$i;
+    $iprice="price".$i;
+    $iauthor="author".$i;
+    $ifield="field".$i;
+    $isubject="subject".$i;
+    $ispeciality="speciality".$i;
+    $idiscount="discount".$i;
 
-$q="insert into book(title,price,author) values('$title',$price,'$author')";
-$status=mysqli_query($con,$q);
+    $name=$_POST[$iname];
+    $price=$_POST[$iprice];
+    $author=$_POST[$iauthor];
+    $field=$_POST[$ifield];
+    $subject=$_POST[$isubject];
+    $speciality=$_POST[$ispeciality];
+    $discount=$_POST[$idiscount];
+
+    $q="insert into book(name,price,author,field,subject,speciality,discount) values('$name',$price,'$author','$field','$subject','$speciality',$discount)";
+    $status=mysqli_query($con,$q);
+    if($status) $cnt++;
+}
+/*if($cnt!=0){
+    echo "<div class="row"><i class="material-icons">check</i> $cnt books inserted!</div><br>";
+}*/
+//echo $num;
 mysqli_close($con);
 ?>
