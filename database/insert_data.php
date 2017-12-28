@@ -64,7 +64,7 @@
                         $n = 0;
                         if(isset($_POST['num_btn'])){
                             $n = $_POST['numob'];
-                        }
+                        
                         //echo "$n";
                         for($i=1; $i<=$n; $i++){
                     ?>
@@ -80,6 +80,7 @@
                     </tr>
                     <?php
                         }
+                    }
                     ?>
                     </tbody>
                 </table>
@@ -98,6 +99,7 @@
 
 
 <?php
+if(isset($_POST['input_btn'])){
  include('db_connect.php');
 
 $num=$_POST['num'];
@@ -129,4 +131,5 @@ for($i=1; $i<=$num; $i++){
 }*/
 //echo $num;
 mysqli_close($con);
+}
 ?>
